@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  zerotier-planet:
+    image: ${DOCKER_IMAGE}
+    container_name: ${CONTAINER_NAME}
+    restart: unless-stopped
+
+    # 端口映射
+    ports:
+      - "${ZT_PORT}:${ZT_PORT}"
+      - "${ZT_PORT}:${ZT_PORT}/udp"
+      - "${API_PORT}:${API_PORT}"
+      - "${FILE_PORT}:${FILE_PORT}"
+
+    # 环境变量
+    environment:
+      - IP_ADDR4=${IP_ADDR4}
+      - IP_ADDR6=${IP_ADDR6}
+      - ZT_PORT=${ZT_PORT}
+      - API_PORT=${API_PORT}
+      - FILE_SERVER_PORT=${FILE_PORT}
+
+    # 卷挂载
+    volumes:
+      - ${DIST_PATH}:/app/dist
+      - ${ZTNCUI_PATH}:/app/ztncui
+      - ${ONE_PATH}:/var/lib/zerotier-one
+      - ${CONFIG_PATH}:/app/config
+
+    # 如果需要宿主机网络模式（某些场景下 ZeroTier 可能需要），可取消下面注释并移除 ports 部分
+    # network_mode: "host"
