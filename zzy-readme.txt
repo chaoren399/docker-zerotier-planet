@@ -1,4 +1,10 @@
 
+git clone https://github.com/chaoren399/docker-zerotier-planet.git
+cd docker-zerotier-planet/
+git checkout zzy-dockercompose
+
+
+./deploy.sh
 
 
 docker pull registry.cn-hangzhou.aliyuncs.com/baimeidashu/bmds:xubiaolin-zerotier-planet-latest
