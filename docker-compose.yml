@@ -22,7 +22,7 @@ services:
     # 卷挂载
     # 确保左侧是宿主机的绝对路径或相对路径，右侧是容器内路径
     volumes:
-      - ${DIST_PATH}:/app/dist
-      - ${ZTNCUI_PATH}:/app/ztncui
-      - ${ONE_PATH}:/var/lib/zerotier-one
-      - ${CONFIG_PATH}:/app/config
+      - ./data/zerotier:/app/dist
+      - ./data/zerotier/ztncui:/app/ztncui
+      - ./data/zerotier/one:/var/lib/zerotier-one
+      - ./data/zerotier/config:/app/config
